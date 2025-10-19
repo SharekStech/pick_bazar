@@ -20,7 +20,14 @@ return new class extends Migration
             $table->double('sales_tax')->nullable();
             $table->double('paid_total')->nullable();
             $table->double('total')->nullable();
+            $table->double('cancelled_amount')->nullable();
             $table->unsignedBigInteger('coupon_id')->nullable();
+            $table->foreign('coupon_id')->references('id')->on('coupons');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('orders');
+            $table->unsignedBigInteger('shop_id')->nullable();
+            $table->foreign('shop_id')->references('id')->on('shops');
+            $table->string('language')->nullable();
             $table->double('discount')->nullable();
             $table->string('payment_gateway')->nullable();
             $table->string('altered_payment_gateway')->nullable();

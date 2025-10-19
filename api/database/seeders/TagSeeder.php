@@ -64,6 +64,72 @@ class TagSeeder extends Seeder
                 'type_id' => 8,
                 'created_at' => '2021-12-08 14:19:57',
                 'updated_at' => '2021-12-08 14:19:57'
+            ],
+            [
+                'id' => 17,
+                'name' => 'Tag 17',
+                'slug' => 'tag-17',
+                'icon' => null,
+                'image' => json_encode([]),
+                'details' => null,
+                'type_id' => 8,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 16,
+                'name' => 'Tag 16',
+                'slug' => 'tag-16',
+                'icon' => null,
+                'image' => json_encode([]),
+                'details' => null,
+                'type_id' => 8,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 25,
+                'name' => 'Tag 25',
+                'slug' => 'tag-25',
+                'icon' => null,
+                'image' => json_encode([]),
+                'details' => null,
+                'type_id' => 8,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 20,
+                'name' => 'Tag 20',
+                'slug' => 'tag-20',
+                'icon' => null,
+                'image' => json_encode([]),
+                'details' => null,
+                'type_id' => 8,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 4,
+                'name' => 'Tag 4',
+                'slug' => 'tag-4',
+                'icon' => null,
+                'image' => json_encode([]),
+                'details' => null,
+                'type_id' => 8,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 5,
+                'name' => 'Tag 5',
+                'slug' => 'tag-5',
+                'icon' => null,
+                'image' => json_encode([]),
+                'details' => null,
+                'type_id' => 8,
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ];
 

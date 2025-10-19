@@ -6,8 +6,6 @@ use Database\Seeders\TagSeeder;
 use Database\Seeders\TaxSeeder;
 use Database\Seeders\ShopSeeder;
 use Database\Seeders\MediaSeeder;
-use Database\Seeders\VariationOptionSeeder;
-
 use Database\Seeders\OrderSeeder;
 use Database\Seeders\AuthorSeeder;
 use Database\Seeders\BannerSeeder;
@@ -34,8 +32,7 @@ use Database\Seeders\CategoryProductSeeder;
 use Database\Seeders\AttributeProductSeeder;
 use Database\Seeders\ModelHasPermissionSeeder;
 
-
-
+use Database\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -47,37 +44,38 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            PermissionSeeder::class,
+            UserSeeder::class,
             TypeSeeder::class,
+            ShippingSeeder::class,
+            TaxSeeder::class,
+            SettingsSeeder::class,
+            AttachmentSeeder::class,
+            AuthorSeeder::class,
             ShopSeeder::class,
-            ProductSeeder::class,
+            ManufacturerSeeder::class,
+            TagSeeder::class,
             CategorySeeder::class,
             AttributeSeeder::class,
+            ProductSeeder::class,
             AttributeValueSeeder::class,
-            TagSeeder::class,
-            ManufacturerSeeder::class,
-            AuthorSeeder::class,
             AttributeProductSeeder::class,
-            AttachmentSeeder::class,
             CategoryProductSeeder::class,
+            ProductTagSeeder::class,
+            VariationSeeder::class,
             CouponSeeder::class,
             AddressSeeder::class,
-            SettingsSeeder::class,
-            PermissionSeeder::class,
+            ProfileSeeder::class,
+
+
             OrderSeeder::class,
-            VariationSeeder::class,
-            TaxSeeder::class,
-            ShippingSeeder::class,
             ReviewSeeder::class,
             QuestionSeeder::class,
-            ProductTagSeeder::class,
-            OrderProductSeeder::class,
-            ModelHasPermissionSeeder::class,
-            MediaSeeder::class,
             DigitalFileSeeder::class,
-            BannerSeeder::class,
-            BalanceSeeder::class,
-            VariationOptionSeeder::class,
-            ProfileSeeder::class,
+
+
+            ModelHasPermissionSeeder::class,
+          
         ]);
     }
 }

@@ -51,6 +51,62 @@ class ShopSeeder extends Seeder
                 'settings' => json_encode(['contact' => '018927525111', 'socials' => [['url' => 'https://www.facebook.com/', 'icon' => 'FacebookIcon'], ['url' => 'https://www.instagram.com/', 'icon' => 'InstagramIcon'], ['url' => 'https://www.twitter.com/', 'icon' => 'TwitterIcon']], 'website' => 'https://redq.io/', 'location' => ['lat' => 38.9032325, 'lng' => -77.0211068, 'city' => 'Washington', 'state' => 'DC', 'country' => 'United States', 'formattedAddress' => 'New York Ave NW, Washington, DC, USA']]),
                 'created_at' => '2021-06-27 03:48:23',
                 'updated_at' => '2021-07-08 09:22:38'
+            ],
+            [
+                'id' => 5,
+                'owner_id' => 1,
+                'name' => 'Bakery Shop',
+                'slug' => 'bakery-shop',
+                'description' => 'The bakery shop is the best shop around the city. This is being run under the store owner and our aim is to provide quality product and hassle free customer service.',
+                'cover_image' => json_encode(['id' => '885', 'original' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/883/Untitled-6.jpg', 'thumbnail' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/883/conversions/Untitled-6-thumbnail.jpg']),
+                'logo' => json_encode(['id' => '884', 'original' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/882/Furniture.png', 'thumbnail' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/882/conversions/Furniture-thumbnail.jpg']),
+                'is_active' => true,
+                'address' => json_encode(['zip' => '08753', 'city' => 'East Dover', 'state' => 'New Jersey', 'country' => 'USA', 'street_address' => '588  Finwood Road']),
+                'settings' => json_encode(['contact' => '21342121221', 'socials' => [['url' => 'https://www.instagram.com/', 'icon' => 'InstagramIcon']], 'website' => 'https://redq.io/', 'location' => ['lat' => 40.757272, 'lng' => -74.089508, 'city' => 'Kearny', 'state' => 'NJ', 'country' => 'United States', 'formattedAddress' => 'New Jersey Turnpike, Kearny, NJ, USA']]),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 4,
+                'owner_id' => 1,
+                'name' => 'Makeup Shop',
+                'slug' => 'makeup-shop',
+                'description' => 'The makeup shop is the best shop around the city. This is being run under the store owner and our aim is to provide quality product and hassle free customer service.',
+                'cover_image' => json_encode(['id' => '885', 'original' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/883/Untitled-6.jpg', 'thumbnail' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/883/conversions/Untitled-6-thumbnail.jpg']),
+                'logo' => json_encode(['id' => '884', 'original' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/882/Furniture.png', 'thumbnail' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/882/conversions/Furniture-thumbnail.jpg']),
+                'is_active' => true,
+                'address' => json_encode(['zip' => '08753', 'city' => 'East Dover', 'state' => 'New Jersey', 'country' => 'USA', 'street_address' => '588  Finwood Road']),
+                'settings' => json_encode(['contact' => '21342121221', 'socials' => [['url' => 'https://www.instagram.com/', 'icon' => 'InstagramIcon']], 'website' => 'https://redq.io/', 'location' => ['lat' => 40.757272, 'lng' => -74.089508, 'city' => 'Kearny', 'state' => 'NJ', 'country' => 'United States', 'formattedAddress' => 'New Jersey Turnpike, Kearny, NJ, USA']]),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 3,
+                'owner_id' => 1,
+                'name' => 'Bag Shop',
+                'slug' => 'bag-shop',
+                'description' => 'The bag shop is the best shop around the city. This is being run under the store owner and our aim is to provide quality product and hassle free customer service.',
+                'cover_image' => json_encode(['id' => '885', 'original' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/883/Untitled-6.jpg', 'thumbnail' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/883/conversions/Untitled-6-thumbnail.jpg']),
+                'logo' => json_encode(['id' => '884', 'original' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/882/Furniture.png', 'thumbnail' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/882/conversions/Furniture-thumbnail.jpg']),
+                'is_active' => true,
+                'address' => json_encode(['zip' => '08753', 'city' => 'East Dover', 'state' => 'New Jersey', 'country' => 'USA', 'street_address' => '588  Finwood Road']),
+                'settings' => json_encode(['contact' => '21342121221', 'socials' => [['url' => 'https://www.instagram.com/', 'icon' => 'InstagramIcon']], 'website' => 'https://redq.io/', 'location' => ['lat' => 40.757272, 'lng' => -74.089508, 'city' => 'Kearny', 'state' => 'NJ', 'country' => 'United States', 'formattedAddress' => 'New Jersey Turnpike, Kearny, NJ, USA']]),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'id' => 7,
+                'owner_id' => 1,
+                'name' => 'Book Shop',
+                'slug' => 'book-shop',
+                'description' => 'The book shop is the best shop around the city. This is being run under the store owner and our aim is to provide quality product and hassle free customer service.',
+                'cover_image' => json_encode(['id' => '885', 'original' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/883/Untitled-6.jpg', 'thumbnail' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/883/conversions/Untitled-6-thumbnail.jpg']),
+                'logo' => json_encode(['id' => '884', 'original' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/882/Furniture.png', 'thumbnail' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/882/conversions/Furniture-thumbnail.jpg']),
+                'is_active' => true,
+                'address' => json_encode(['zip' => '08753', 'city' => 'East Dover', 'state' => 'New Jersey', 'country' => 'USA', 'street_address' => '588  Finwood Road']),
+                'settings' => json_encode(['contact' => '21342121221', 'socials' => [['url' => 'https://www.instagram.com/', 'icon' => 'InstagramIcon']], 'website' => 'https://redq.io/', 'location' => ['lat' => 40.757272, 'lng' => -74.089508, 'city' => 'Kearny', 'state' => 'NJ', 'country' => 'United States', 'formattedAddress' => 'New Jersey Turnpike, Kearny, NJ, USA']]),
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ];
 
