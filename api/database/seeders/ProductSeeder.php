@@ -11,7 +11,7 @@ class ProductSeeder extends Seeder
 {
     public function run()
     {
-        $products = [
+         $products = [
             [
                 'id' => 1,
                 'name' => 'Apples',
@@ -776,44 +776,65 @@ class ProductSeeder extends Seeder
             mkdir($localPath, 0755, true);
         }
 
-        // ✅ Loop and process each product
         foreach ($products as &$product) {
+            // ✅ ডাউনলোড প্রাইমারি image
             $remoteUrl = $product['image'];
-
-            try {
-                $response = Http::get($remoteUrl);
-
-                if ($response->successful()) {
-                    // Extract clean file name from URL
-                    $filename = basename(parse_url(urldecode($remoteUrl), PHP_URL_PATH));
-
-                    // Fallback name
-                    if (!$filename) {
-                        $filename = Str::uuid() . '.jpg';
+            if ($remoteUrl) {
+                try {
+                    $response = Http::get($remoteUrl);
+                    if ($response->successful()) {
+                        $filename = basename(parse_url($remoteUrl, PHP_URL_PATH)) ?: Str::uuid() . '.jpg';
+                        file_put_contents($localPath . '/' . $filename, $response->body());
+                        $product['image'] = 'assets/uploads/products/' . $filename; // local path হিসেবে replace
+                    } else {
+                        $product['image'] = null;
                     }
-
-                    // Save image to local folder
-                    file_put_contents($localPath . '/' . $filename, $response->body());
-
-                    // Replace remote URL with local path
-                    $product['image'] = 'assets/uploads/products/' . $filename;
-
-                    echo "✅ Image saved: {$filename}\n";
-                } else {
-                    echo "❌ Failed to download: {$remoteUrl}\n";
+                } catch (\Exception $e) {
                     $product['image'] = null;
                 }
-            } catch (\Exception $e) {
-                echo "⚠️ Error downloading image: " . $e->getMessage() . "\n";
-                $product['image'] = null;
             }
+
+            // ✅ ডাউনলোড gallery images
+            // ✅ ডাউনলোড gallery images
+            $gallery = [];
+            $galleryItems = is_string($product['gallery']) ? json_decode($product['gallery'], true) : $product['gallery'];
+
+            if (is_array($galleryItems)) {
+                foreach ($galleryItems as $img) {
+                    $remoteUrl = $img['original'] ?? null;
+                    if ($remoteUrl) {
+                        try {
+                            $response = Http::get($remoteUrl);
+                            if ($response->successful()) {
+                                $filename = basename(parse_url($remoteUrl, PHP_URL_PATH)) ?: Str::uuid() . '.jpg';
+                                file_put_contents($localPath . '/' . $filename, $response->body());
+
+                                $thumbnailUrl = $img['thumbnail'] ?? $remoteUrl;
+                                $thumbFilename = basename(parse_url($thumbnailUrl, PHP_URL_PATH)) ?: Str::uuid() . '-thumb.jpg';
+                                file_put_contents($localPath . '/' . $thumbFilename, Http::get($thumbnailUrl)->body());
+
+                                $gallery[] = [
+                                    'id' => $img['id'],
+                                    'original' => 'assets/uploads/products/' . $filename,
+                                    'thumbnail' => 'assets/uploads/products/' . $thumbFilename,
+                                ];
+                            }
+                        } catch (\Exception $e) {
+                            // ignore
+                        }
+                    }
+                }
+            }
+
+            $product['gallery'] = json_encode($gallery); // JSON column
         }
 
-        // ✅ Insert all products into DB
-        DB::table('products')->insert($products);
-
-        echo "🎉 Products seeded successfully!\n";
-
-        DB::table('products')->insert($products);
+        // ✅ Insert into DB
+        try {
+            DB::table('products')->insert($products);
+            echo "🎉 Products seeded successfully!\n";
+        } catch (\Exception $e) {
+            echo "❌ Database error: " . $e->getMessage() . "\n";
+        }
     }
-};
+}
