@@ -9,16 +9,19 @@ class Address extends Model
 {
     protected $table = 'address';
 
-    public $guarded = [];
-
-    protected $casts = [
-        'address' => 'json',
-        'location' => 'json'
+    protected $fillable = [
+        'title',
+        'type',
+        'default',
+        'address',
+        'customer_id',
     ];
 
-    /**
-     * @return BelongsTo
-     */
+    protected $casts = [
+        'address' => 'array',
+        'default' => 'boolean',
+    ];
+
     public function customer(): BelongsTo
     {
         return $this->belongsTo(User::class, 'customer_id');

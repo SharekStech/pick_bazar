@@ -79,6 +79,7 @@ class CategoryController extends CoreController
      */
     public function store(CategoryCreateRequest $request)
     {
+
         try {
             return $this->repository->saveCategory($request);
         } catch (MarvelException $th) {
