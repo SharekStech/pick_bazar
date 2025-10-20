@@ -11,7 +11,7 @@ class VariationSeeder extends Seeder
     {
         $variations = [
             [
-                'id' => 157,
+
                 'title' => 'Red/S',
                 'image' => null,
                 'price' => 30,
@@ -26,7 +26,7 @@ class VariationSeeder extends Seeder
                 'updated_at' => '2021-05-09 17:47:03'
             ],
             [
-                'id' => 158,
+
                 'title' => 'Red/M',
                 'image' => null,
                 'price' => 30,
@@ -41,7 +41,7 @@ class VariationSeeder extends Seeder
                 'updated_at' => '2021-05-09 17:47:03'
             ],
             [
-                'id' => 159,
+
                 'title' => 'Blue/S',
                 'image' => null,
                 'price' => 30,
@@ -56,7 +56,7 @@ class VariationSeeder extends Seeder
                 'updated_at' => '2021-05-09 17:47:03'
             ],
             [
-                'id' => 308,
+
                 'title' => 'Hardcover Book/English',
                 'image' => null,
                 'price' => 200,
@@ -71,7 +71,7 @@ class VariationSeeder extends Seeder
                 'updated_at' => '2021-12-18 12:14:05'
             ],
             [
-                'id' => 312,
+                
                 'title' => 'Hardcover Book/English',
                 'image' => null,
                 'price' => 300,

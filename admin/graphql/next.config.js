@@ -13,19 +13,35 @@ module.exports = withPWA({
     esmExternals: false,
   },
   i18n,
-  images: {
-    domains: [
-      'via.placeholder.com',
-      'res.cloudinary.com',
-      's3.amazonaws.com',
-      '18.141.64.26',
-      '127.0.0.1',
-      'localhost',
-      'picsum.photos',
-      'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',
-      'lh3.googleusercontent.com',
-    ],
-  },
+  // images: {
+  //   domains: [
+  //     'via.placeholder.com',
+  //     'res.cloudinary.com',
+  //     's3.amazonaws.com',
+  //     '18.141.64.26',
+  //     '127.0.0.1',
+  //     'localhost',
+  //     'picsum.photos',
+  //     'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',
+  //     'lh3.googleusercontent.com',
+  //   ],
+  // },
+
+
+images: {
+  domains: [
+    '127.0.0.1',
+    'localhost',
+    'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com', // ✅ সঠিক
+    'res.cloudinary.com',
+    's3.amazonaws.com',
+    'via.placeholder.com',
+    'picsum.photos',
+  ],
+  unoptimized: true, // optimization চালু রাখতে চাইলে false
+},
+
+
 
   webpack(config, options) {
     config.module.rules.push({

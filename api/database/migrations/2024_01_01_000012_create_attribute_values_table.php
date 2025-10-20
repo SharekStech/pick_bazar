@@ -13,9 +13,9 @@ return new class extends Migration
             $table->string('slug');
             $table->unsignedBigInteger('attribute_id');
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
-               $table->string('language')->nullable();  // 👈 added
             $table->string('meta')->nullable();
             $table->string('value');
+            $table->string('language')->default('en');
             $table->timestamps();
         });
     }

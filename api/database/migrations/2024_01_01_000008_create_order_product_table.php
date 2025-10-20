@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('order_quantity');
             $table->double('unit_price');
             $table->double('subtotal');
+            $table->unsignedBigInteger('variation_option_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserSeeder extends Seeder
 {
@@ -31,8 +34,8 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'name' => 'Customer',
-                'email' => 'customer@demo.com',
+                'name' => 'Store Owner', // Changed from Customer to Store Owner as per task. Role assignment typically handled separately.
+                'email' => 'store@demo.com', // Updated email for consistency
                 'password' => Hash::make('123456'),
                 'email_verified_at' => now(),
                 'created_at' => now(),
@@ -59,3 +62,4 @@ class UserSeeder extends Seeder
         ]);
     }
 }
+

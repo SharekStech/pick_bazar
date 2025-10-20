@@ -1,10 +1,13 @@
 <?php
-use Illuminate\Database\Seeder;
 
-use Database\Seeders\TypeSeeder;
+
+use Database\Seeders\VariationOptionSeeder;
 use Database\Seeders\TagSeeder;
 use Database\Seeders\TaxSeeder;
+use Illuminate\Database\Seeder;
 use Database\Seeders\ShopSeeder;
+use Database\Seeders\TypeSeeder;
+use Database\Seeders\UserSeeder;
 use Database\Seeders\MediaSeeder;
 use Database\Seeders\OrderSeeder;
 use Database\Seeders\AuthorSeeder;
@@ -29,10 +32,9 @@ use Database\Seeders\ManufacturerSeeder;
 use Database\Seeders\OrderProductSeeder;
 use Database\Seeders\AttributeValueSeeder;
 use Database\Seeders\CategoryProductSeeder;
+
 use Database\Seeders\AttributeProductSeeder;
 use Database\Seeders\ModelHasPermissionSeeder;
-
-use Database\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -66,9 +68,12 @@ class DatabaseSeeder extends Seeder
             CouponSeeder::class,
             AddressSeeder::class,
             ProfileSeeder::class,
+            VariationOptionSeeder::class,
+            VariationSeeder::class,
 
 
             OrderSeeder::class,
+            OrderProductSeeder::class,
             ReviewSeeder::class,
             QuestionSeeder::class,
             DigitalFileSeeder::class,

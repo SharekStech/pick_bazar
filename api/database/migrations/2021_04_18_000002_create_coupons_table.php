@@ -26,6 +26,7 @@ return new class extends Migration
             $table->float('minimum_cart_amount')->default(0);
             $table->string('active_from');
             $table->string('expire_at');
+             $table->string('language')->default('en');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

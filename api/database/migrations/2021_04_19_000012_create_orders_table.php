@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreign('parent_id')->references('id')->on('orders');
             $table->unsignedBigInteger('shop_id')->nullable();
             $table->foreign('shop_id')->references('id')->on('shops');
-            $table->string('language')->nullable();
+            $table->string('language')->default('en');
             $table->double('discount')->nullable();
             $table->string('payment_gateway')->nullable();
             $table->string('altered_payment_gateway')->nullable();
@@ -36,6 +36,7 @@ return new class extends Migration
             $table->unsignedBigInteger('logistics_provider')->nullable();
             $table->double('delivery_fee')->nullable();
             $table->string('delivery_time')->nullable();
+
             $table->enum(
                 'order_status',
                 [

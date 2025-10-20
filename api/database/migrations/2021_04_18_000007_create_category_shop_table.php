@@ -13,6 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('shop_id');
             $table->unsignedBigInteger('category_id');
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->string('language')->default('en');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }

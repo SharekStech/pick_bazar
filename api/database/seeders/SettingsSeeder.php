@@ -23,16 +23,17 @@ class SettingsSeeder extends Seeder
                     'metaDescription' => null,
                     'twitterCardType' => null
                 ],
-                'logo' => [
-                    'id' => '862',
-                    'original' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/860/PickBazar.png',
-                    'thumbnail' => 'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/860/conversions/PickBazar-thumbnail.jpg'
-                ],
+                 'logo' => [
+            'id' => '862',
+            // ✅ Localhost path ব্যবহার
+            'original' => 'http://127.0.0.1:8000/assets/uploads/logo/nexen_logo.png',
+            'thumbnail' => 'http://127.0.0.1:8000/assets/uploads/logo/nexen_logo.png' // যদি আলাদা thumbnail না থাকে
+        ],
                 'useOtp' => false,
                 'useGoogleMap' => false,
                 'currency' => 'USD',
                 'taxClass' => '1',
-                'siteTitle' => 'Pickbazar',
+                'siteTitle' => 'Nexen Health',
                 'deliveryTime' => [
                     ['title' => 'Express Delivery', 'description' => '90 min express delivery'],
                     ['title' => 'Morning', 'description' => '8.00 AM - 11.00 AM'],
@@ -44,7 +45,7 @@ class SettingsSeeder extends Seeder
                 'siteSubtitle' => 'Your next ecommerce',
                 'shippingClass' => '1',
                 'contactDetails' => [
-                    'contact' => '+129290122122',
+                    'contact' => '01819400200',
                     'socials' => [
                         ['url' => 'https://www.facebook.com/', 'icon' => 'FacebookIcon'],
                         ['url' => 'https://twitter.com/home', 'icon' => 'TwitterIcon'],
@@ -57,8 +58,8 @@ class SettingsSeeder extends Seeder
                         'zip' => null,
                         'city' => null,
                         'state' => 'NY',
-                        'country' => 'United States',
-                        'formattedAddress' => 'NY State Thruway, New York, USA'
+                        'country' => 'Bangladesh',
+                        'formattedAddress' => 'null'
                     ]
                 ],
                 'minimumOrderAmount' => 0,

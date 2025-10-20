@@ -14,7 +14,7 @@ return new class extends Migration
             $table->boolean('is_approved')->default(false);
             $table->json('image')->nullable();
             $table->json('cover_image')->nullable();
-            
+            $table->string('language')->default('en');
             $table->string('slug');
             $table->text('bio')->nullable();
             $table->text('quote')->nullable();

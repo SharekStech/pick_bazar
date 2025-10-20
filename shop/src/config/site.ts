@@ -2,11 +2,11 @@ import { Routes } from '@/config/routes';
 import { PaymentGateway } from '@/types';
 
 export const siteSettings = {
-  name: 'PickBazar',
+  name: 'Nexen Health',
   description: '',
   logo: {
-    url: '/logo.svg',
-    alt: 'PickBazar',
+    url: '/api/public/assets/uploads/logo/nexen_logo.png',
+    alt: 'Nexen Health',
     href: '/grocery',
     width: 128,
     height: 40,

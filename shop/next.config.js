@@ -12,7 +12,7 @@ module.exports = withPWA({
   i18n,
   images: {
     domains: [
-      'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',
+      'assets.nexenhealth.com',
       'pixarlaravel.s3.ap-southeast-1.amazonaws.com',
       'lh3.googleusercontent.com',
       'localhost',
