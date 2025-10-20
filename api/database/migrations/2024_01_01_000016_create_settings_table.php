@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->json('options');
+            $table->string('language', 5)->default('en');
             $table->timestamps();
         });
     }

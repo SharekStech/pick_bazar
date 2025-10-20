@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('website')->nullable();
             $table->json('socials')->nullable();
+            $table->string('language')->default('en');
+
             $table->timestamps();
         });
     }

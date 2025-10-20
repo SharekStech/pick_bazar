@@ -22,6 +22,7 @@ return new class extends Migration
             $table->double('price')->nullable();
             $table->double('sale_price')->nullable();
             $table->string('sku')->nullable();
+            $table->string('language')->default('en');
             $table->integer('quantity')->default(0);
             $table->boolean('in_stock')->default(true);
             $table->boolean('is_taxable')->default(false);

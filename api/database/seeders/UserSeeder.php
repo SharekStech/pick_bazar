@@ -13,8 +13,17 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id' => 1,
-                'name' => 'Store Owner',
-                'email' => 'store.owner@demo.com',
+                'name' => 'Admin',
+                'email' => 'admin@demo.com',
+                'password' => Hash::make('123456'),
+                'email_verified_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 3,
+                'name' => 'Super Admin',
+                'email' => 'superadmin@demo.com',
                 'password' => Hash::make('123456'),
                 'email_verified_at' => now(),
                 'created_at' => now(),

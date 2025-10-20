@@ -14,6 +14,8 @@ return new class extends Migration
             $table->text('title');
             $table->text('description')->nullable();
             $table->json('image')->nullable();
+            $table->string('language')->default('en');
+
             $table->timestamps();
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
         });

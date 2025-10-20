@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->json('options');
             $table->json('image')->nullable();
+            $table->string('language')->default('en');
+
             $table->boolean('is_digital')->default(false);
             $table->unsignedBigInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

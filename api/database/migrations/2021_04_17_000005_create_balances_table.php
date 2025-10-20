@@ -16,6 +16,8 @@ return new class extends Migration
             $table->double('total_earnings')->default(0);
             $table->double('withdrawn_amount')->default(0);
             $table->double('current_balance')->default(0);
+            $table->string('language')->default('en');
+
             $table->json('payment_info')->nullable();
             $table->timestamps();
         });

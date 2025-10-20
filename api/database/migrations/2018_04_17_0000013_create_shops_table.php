@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->text('description')->nullable();
+            $table->string('language')->default('en');
+
             $table->json('cover_image')->nullable();
             $table->json('logo')->nullable();
             $table->boolean('is_active')->default(false);

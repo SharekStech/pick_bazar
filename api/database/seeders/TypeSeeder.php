@@ -54,6 +54,16 @@ class TypeSeeder extends Seeder
                 'promotional_sliders' => json_encode([]),
                 'created_at' => '2021-12-07 16:30:18',
                 'updated_at' => '2021-12-08 13:06:56'
+            ],
+            [
+                'id' => 5,
+                'name' => 'Pharmacy',
+                'settings' => json_encode(['isHome' => false, 'layoutType' => 'compact', 'productCard' => 'radon']),
+                'slug' => 'pharmacy',
+                'icon' => 'pharmacy',
+                'promotional_sliders' => json_encode([]),
+                'created_at' => '2021-12-07 16:30:18',
+                'updated_at' => '2021-12-08 13:06:56'
             ]
         ];
 

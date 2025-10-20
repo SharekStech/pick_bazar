@@ -11,19 +11,19 @@ class ModelHasPermissionSeeder extends Seeder
     {
         $modelHasPermissions = [
             [
-                'permission_id' => 2,
+                'permission_id' => 1, // super_admin permission ID
                 'model_type' => 'Marvel\\Database\\Models\\User',
-                'model_id' => 1,
+                'model_id' => 1, // Admin user ID
             ],
             [
-                'permission_id' => 2,
+                'permission_id' => 2, // customer permission ID
                 'model_type' => 'Marvel\\Database\\Models\\User',
-                'model_id' => 2,
+                'model_id' => 2, // Customer user ID
             ],
             [
-                'permission_id' => 3,
+                'permission_id' => 1, // super_admin permission ID
                 'model_type' => 'Marvel\\Database\\Models\\User',
-                'model_id' => 1,
+                'model_id' => 3, // Super Admin user ID
             ],
         ];
 

@@ -11,10 +11,12 @@ return new class extends Migration
         Schema::create('types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('language')->default('en');
+
             $table->string('slug');
             $table->string('icon')->nullable();
             $table->json('promotional_sliders')->nullable();
-            $table->json('settings')->nullable();  
+            $table->json('settings')->nullable();
             $table->timestamps();
         });
     }

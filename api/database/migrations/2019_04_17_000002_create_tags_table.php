@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('details')->nullable();
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('types');
+            $table->string('language')->default('en');
+
             $table->timestamps();
             $table->softDeletes();
         });
