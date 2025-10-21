@@ -67,6 +67,10 @@ class AttachmentController extends CoreController
         return $urls;
     }
 
+
+
+
+
     /**
      * Display the specified resource.
      *

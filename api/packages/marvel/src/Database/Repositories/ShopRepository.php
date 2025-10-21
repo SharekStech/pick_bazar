@@ -59,6 +59,7 @@ class ShopRepository extends BaseRepository
 
     public function storeShop($request)
     {
+
         try {
             $data = $request->only($this->dataArray);
             $data['slug'] = $this->makeSlug($request);
@@ -77,6 +78,9 @@ class ShopRepository extends BaseRepository
             throw new HttpException(400, COULD_NOT_CREATE_THE_RESOURCE);
         }
     }
+
+
+
 
     public function updateShop($request, $id)
     {
