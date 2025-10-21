@@ -16,6 +16,7 @@ module.exports = withPWA({
       'pixarlaravel.s3.ap-southeast-1.amazonaws.com',
       'lh3.googleusercontent.com',
       'localhost',
+      'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',
       '127.0.0.1',
       'i.pravatar.cc',
     ],

@@ -80,6 +80,8 @@ class DatabaseSeeder extends Seeder
 
 
             ModelHasPermissionSeeder::class,
+            MediaSeeder::class,
+            
 
         ]);
     }
