@@ -17,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+require base_path('packages/marvel/src/Rest/Routes.php');
+
+
+Route::get('/debug-test', function() {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Main API Routes Working!',
+        'marvel_package' => 'Loaded',
+        'timestamp' => now()->toDateTimeString()
+    ]);
+});

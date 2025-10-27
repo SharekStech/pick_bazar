@@ -41,11 +41,37 @@ use Marvel\Http\Controllers\WithdrawController;
 use Marvel\Http\Controllers\LanguageController;
 use Marvel\Http\Controllers\StoreNoticeController;
 
+
 /**
  * ******************************************
  * Available Public Routes
  * ******************************************
  */
+
+Route::get('/debug-test', function() {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Marvel API Package is Working!',
+        'package' => 'marvel',
+        'timestamp' => now()->toDateTimeString()
+    ]);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get('/email/verify/{id}/{hash}', [UserController::class, 'verifyEmail'])->name('verification.verify');
 
 Route::post('/register', [UserController::class, 'register']);

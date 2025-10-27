@@ -76,7 +76,7 @@ const ProductList = ({
         <div className="relative flex h-[42px] w-[42px] items-center">
           <Image
             // src={image?.thumbnail ?? siteSettings.product.placeholder}
-           src={`http://127.0.0.1:8000${image?.thumbnail ?? '/assets/uploads/products/placeholder.jpg'}`}
+           src={`${image?.thumbnail ?? '/assets/uploads/products/placeholder.jpg'}`}
             
             alt={name}
             fill

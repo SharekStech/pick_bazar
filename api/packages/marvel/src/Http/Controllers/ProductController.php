@@ -45,7 +45,10 @@ class ProductController extends CoreController
      */
     public function index(Request $request)
     {
+
+
         $limit = $request->limit ?   $request->limit : 15;
+
         return $this->fetchProducts($request)->paginate($limit);
     }
 
