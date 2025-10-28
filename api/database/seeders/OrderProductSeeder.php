@@ -9,33 +9,23 @@ class OrderProductSeeder extends Seeder
 {
     public function run()
     {
-        $orderProducts = [
-            [
-                'id' => 5,
-                'order_id' => 5,
-                'product_id' => 888,
-                'variation_option_id' => 1,
-                'order_quantity' => 3,
-                'unit_price' => 100,
-                'subtotal' => 300,
-                'deleted_at' => null,
-                'created_at' => '2023-04-09 22:11:26',
-                'updated_at' => '2023-04-09 22:11:26'
-            ],
-            [
-                'id' => 9,
-                'order_id' => 9,
-                'product_id' => 888,
-                'variation_option_id' => 2,
-                'order_quantity' => 3,
-                'unit_price' => 100,
-                'subtotal' => 300,
-                'deleted_at' => null,
-                'created_at' => '2023-04-09 22:11:26',
-                'updated_at' => '2023-04-09 22:11:26'
-            ],
+        $productIds = DB::table('products')->pluck('id')->toArray();
+        $orderIds = DB::table('orders')->pluck('id')->toArray();
 
-        ];
+        $orderProducts = [];
+        for ($i = 0; $i < 30; $i++) {
+            $orderProducts[] = [
+                'order_id' => $orderIds[array_rand($orderIds)],
+                'product_id' => $productIds[array_rand($productIds)],
+                'variation_option_id' => null,
+                'order_quantity' => rand(1, 5),
+                'unit_price' => rand(50, 500),
+                'subtotal' => rand(50, 2500),
+                'deleted_at' => null,
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+        }
 
         DB::table('order_product')->insert($orderProducts);
     }

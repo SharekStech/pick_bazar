@@ -282,42 +282,43 @@ class Product extends Model
 
 
 
-public function getImageAttribute($value)
-{
-    if (!$value) return null;
+    public function getImageAttribute($value)
+    {
+        if (!$value) return null;
 
-    // If JSON string → convert to array
-    if (is_string($value)) {
-        $value = json_decode($value, true);
+        // If JSON string → convert to array
+        if (is_string($value)) {
+            $value = json_decode($value, true);
+        }
+
+        // if still null or invalid json
+        if (!is_array($value)) return null;
+
+        $value['original'] = url($value['original'] ?? '');
+        $value['thumbnail'] = url($value['thumbnail'] ?? '');
+
+        return $value;
     }
 
-    // if still null or invalid json
-    if (!is_array($value)) return null;
+    public function getGalleryAttribute($value)
+    {
+        if (!$value) return [];
 
-    $value['original'] = url($value['original'] ?? '');
-    $value['thumbnail'] = url($value['thumbnail'] ?? '');
+        // If JSON string → convert to array
+        if (is_string($value)) {
+            $value = json_decode($value, true);
+        }
 
-    return $value;
-}
+        // If still not array return empty
+        if (!is_array($value)) return [];
 
-public function getGalleryAttribute($value)
-{
-    if (!$value) return [];
-
-    // If JSON string → convert to array
-    if (is_string($value)) {
-        $value = json_decode($value, true);
+        return collect($value)->map(function ($item) {
+            $item['original'] = url($item['original'] ?? '');
+            $item['thumbnail'] = url($item['thumbnail'] ?? '');
+            return $item;
+        });
     }
 
-    // If still not array return empty
-    if (!is_array($value)) return [];
-
-    return collect($value)->map(function ($item) {
-        $item['original'] = url($item['original'] ?? '');
-        $item['thumbnail'] = url($item['thumbnail'] ?? '');
-        return $item;
-    });
-}
 
 
 }

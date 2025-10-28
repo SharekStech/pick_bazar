@@ -111,90 +111,239 @@ class ProductRepository extends BaseRepository
      * @param  mixed $setting
      * @return void
      */
+    // public function storeProduct($request, $setting)
+    // {
+    //     try {
+
+    //         // Add uploaded files to $data
+    //         if ($request->hasFile('image')) {
+    //             $data['image_file'] = $request->file('image');
+    //         }
+
+    //         if ($request->hasFile('gallery')) {
+    //             $data['gallery_files'] = $request->file('gallery');
+    //         }
+
+    //         $data = $request->only($this->dataArray);
+    //         $data['slug'] = $this->makeSlug($request);
+
+    //         if ($setting->options["isProductReview"]) {
+    //             if ($request->status == ProductStatus::DRAFT) {
+    //                 $data['status'] = ProductStatus::DRAFT;
+    //             } elseif ($request->status == ProductStatus::UNDER_REVIEW) {
+    //                 $data['status'] = ProductStatus::UNDER_REVIEW;
+    //             } else {
+    //                 throw new HttpException(406, 'The selected status is invalid.');
+    //             }
+    //         }
+
+    //         if ($request->product_type == ProductType::SIMPLE) {
+    //             $data['max_price'] = $data['price'];
+    //             $data['min_price'] = $data['price'];
+    //         }
+    //         $product = $this->create($data);
+
+    //         if (empty($product->slug) || is_numeric($product->slug)) {
+    //             $product->slug = $this->customSlugify($product->name);
+    //         }
+
+    //         if (isset($request['metas'])) {
+    //             foreach ($request['metas'] as $value) {
+    //                 $metas[$value['key']] = $value['value'];
+    //                 $product->setMeta($metas);
+    //             }
+    //         }
+
+    //         if (isset($request['categories'])) {
+    //             $product->categories()->attach($request['categories']);
+    //         }
+    //         if (isset($request['dropoff_locations'])) {
+    //             $product->dropoff_locations()->attach($request['dropoff_locations']);
+    //         }
+    //         if (isset($request['pickup_locations'])) {
+    //             $product->pickup_locations()->attach($request['pickup_locations']);
+    //         }
+    //         if (isset($request['persons'])) {
+    //             $product->persons()->attach($request['persons']);
+    //         }
+    //         if (isset($request['features'])) {
+    //             $product->features()->attach($request['features']);
+    //         }
+    //         if (isset($request['deposits'])) {
+    //             $product->deposits()->attach($request['deposits']);
+    //         }
+    //         if (isset($request['tags'])) {
+    //             $product->tags()->attach($request['tags']);
+    //         }
+    //         if (isset($request['variations'])) {
+    //             $product->variations()->attach($request['variations']);
+    //         }
+    //         if (isset($request['variation_options'])) {
+    //             foreach ($request['variation_options']['upsert'] as $variation_option) {
+    //                 if (isset($variation_option['is_digital']) && $variation_option['is_digital']) {
+    //                     $file = $variation_option['digital_file'];
+    //                     unset($variation_option['digital_file']);
+    //                 }
+    //                 $new_variation_option = $product->variation_options()->create($variation_option);
+    //                 if (isset($variation_option['is_digital']) && $variation_option['is_digital']) {
+    //                     $new_variation_option->digital_file()->create($file);
+    //                 }
+    //             }
+    //         }
+    //         if (isset($request['is_digital']) && ($request['is_digital'] === true || $request['is_digital'] === 1) && isset($request['digital_file'])) {
+
+    //             $digitalFileArray['attachment_id'] = $request['digital_file']['attachment_id'];
+    //             $digitalFileArray['url'] = $request['digital_file']['url'];
+
+
+    //             $product->digital_file()->create($digitalFileArray);
+    //         }
+
+    //         $product->save();
+    //         return $product;
+    //     } catch (Exception $e) {
+    //         throw $e;
+    //     }
+    // }
+
+
     public function storeProduct($request, $setting)
     {
         try {
+            // Basic Data
             $data = $request->only($this->dataArray);
+
+            // Slug Generate
             $data['slug'] = $this->makeSlug($request);
 
+            // Product Status
             if ($setting->options["isProductReview"]) {
-                if ($request->status == ProductStatus::DRAFT) {
-                    $data['status'] = ProductStatus::DRAFT;
-                } elseif ($request->status == ProductStatus::UNDER_REVIEW) {
-                    $data['status'] = ProductStatus::UNDER_REVIEW;
-                } else {
-                    throw new HttpException(406, 'The selected status is invalid.');
-                }
+                $data['status'] = in_array($request->status, [
+                    ProductStatus::DRAFT,
+                    ProductStatus::UNDER_REVIEW
+                ]) ? $request->status : throw new HttpException(406, 'Invalid Status');
             }
 
+            // Simple Product Price Set
             if ($request->product_type == ProductType::SIMPLE) {
                 $data['max_price'] = $data['price'];
                 $data['min_price'] = $data['price'];
             }
+
+            // ✅ Upload Main Image
+            if ($request->hasFile('image')) {
+
+                $imageFile = $request->file('image');
+
+                // If image accidentally comes as array take first one
+                if (is_array($imageFile)) {
+                    $imageFile = $imageFile[0];
+                }
+
+                $fileName = time() . '-' . $imageFile->getClientOriginalName();
+                $imageFile->storeAs('', $fileName, 'products');
+
+                $data['image'] = [
+                    'original' => 'assets/uploads/products/' . $fileName,
+                    'thumbnail' => 'assets/uploads/products/' . $fileName,
+                ];
+            }
+
+
+            // ✅ Upload Gallery Images
+            if ($request->hasFile('gallery')) {
+
+                $galleryFiles = $request->file('gallery');
+                $galleryPaths = [];
+
+                foreach ($galleryFiles as $gFile) {
+
+                    // In case a nested array is coming from input
+                    if (is_array($gFile)) {
+                        $gFile = $gFile[0];
+                    }
+
+                    $fileName = time() . '-' . $gFile->getClientOriginalName();
+                    $gFile->storeAs('', $fileName, 'products');
+
+                    $galleryPaths[] = [
+                        'original' => 'assets/uploads/products/' . $fileName,
+                        'thumbnail' => 'assets/uploads/products/' . $fileName
+                    ];
+                }
+
+                $data['gallery'] = $galleryPaths;
+            }
+
+
+            // ✅ Create Product
             $product = $this->create($data);
 
+            // ✅ Force regenerate slug if numeric
             if (empty($product->slug) || is_numeric($product->slug)) {
                 $product->slug = $this->customSlugify($product->name);
             }
 
-            if (isset($request['metas'])) {
-                foreach ($request['metas'] as $value) {
-                    $metas[$value['key']] = $value['value'];
-                    $product->setMeta($metas);
+            // ✅ Save Metas
+            if (!empty($request['metas'])) {
+                $metaData = collect($request['metas'])->pluck('value', 'key')->toArray();
+                $product->setMeta($metaData);
+            }
+
+            // ✅ Attach Pivot Relations
+            $relations = [
+                'categories',
+                'dropoff_locations',
+                'pickup_locations',
+                'persons',
+                'features',
+                'deposits',
+                'tags',
+                'variations'
+            ];
+
+            foreach ($relations as $rel) {
+                if (!empty($request[$rel])) {
+                    $product->{$rel}()->attach($request[$rel]);
                 }
             }
 
-            if (isset($request['categories'])) {
-                $product->categories()->attach($request['categories']);
-            }
-            if (isset($request['dropoff_locations'])) {
-                $product->dropoff_locations()->attach($request['dropoff_locations']);
-            }
-            if (isset($request['pickup_locations'])) {
-                $product->pickup_locations()->attach($request['pickup_locations']);
-            }
-            if (isset($request['persons'])) {
-                $product->persons()->attach($request['persons']);
-            }
-            if (isset($request['features'])) {
-                $product->features()->attach($request['features']);
-            }
-            if (isset($request['deposits'])) {
-                $product->deposits()->attach($request['deposits']);
-            }
-            if (isset($request['tags'])) {
-                $product->tags()->attach($request['tags']);
-            }
-            if (isset($request['variations'])) {
-                $product->variations()->attach($request['variations']);
-            }
-            if (isset($request['variation_options'])) {
-                foreach ($request['variation_options']['upsert'] as $variation_option) {
-                    if (isset($variation_option['is_digital']) && $variation_option['is_digital']) {
-                        $file = $variation_option['digital_file'];
-                        unset($variation_option['digital_file']);
-                    }
-                    $new_variation_option = $product->variation_options()->create($variation_option);
-                    if (isset($variation_option['is_digital']) && $variation_option['is_digital']) {
-                        $new_variation_option->digital_file()->create($file);
-                    }
+            // ✅ Variation Options (No Digital File)
+            if (!empty($request['variation_options']['upsert'])) {
+                foreach ($request['variation_options']['upsert'] as $vo) {
+                    unset($vo['digital_file']); // remove attachment reference
+                    $product->variation_options()->create($vo);
                 }
             }
-            if (isset($request['is_digital']) && ($request['is_digital'] === true || $request['is_digital'] === 1) && isset($request['digital_file'])) {
 
-                $digitalFileArray['attachment_id'] = $request['digital_file']['attachment_id'];
-                $digitalFileArray['url'] = $request['digital_file']['url'];
-
-
-                $product->digital_file()->create($digitalFileArray);
-            }
+            // ✅ Remove Digital File (Because we are not using attachments)
+            // So we do NOTHING here.
 
             $product->save();
             return $product;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function checkProductForPublish($request, $product)
     {
@@ -548,7 +697,8 @@ class ProductRepository extends BaseRepository
         }
 
         return [
-            'totalPrice' => $price + $person_price + $deposit_price + $feature_price + $dropoff_location_price, $pickup_location_price,
+            'totalPrice' => $price + $person_price + $deposit_price + $feature_price + $dropoff_location_price,
+            $pickup_location_price,
             'personPrice' => $person_price,
             'depositPrice' => $deposit_price,
             'featurePrice' => $feature_price,
