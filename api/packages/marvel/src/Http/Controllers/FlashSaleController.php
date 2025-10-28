@@ -8,10 +8,18 @@ use Illuminate\Support\Facades\Validator;
 
 class FlashSaleController extends CoreController
 {
-    public function index()
+    public function index(Request $request)
     {
-        $flashSales = FlashSale::with('product')->get();
-        return response()->json(['success' => true, 'data' => $flashSales]);
+        $limit = $request->limit ?? 15; // Default 15
+
+        $flashSales = FlashSale::with('product')
+            ->where('status', 'active')
+            ->paginate($limit);
+
+        return response()->json([
+            'success' => true,
+            'data' => $flashSales
+        ]);
     }
 
     public function show($id)
