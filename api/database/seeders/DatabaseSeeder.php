@@ -32,6 +32,7 @@ use Database\Seeders\ManufacturerSeeder;
 use Database\Seeders\OrderProductSeeder;
 use Database\Seeders\AttributeValueSeeder;
 use Database\Seeders\CategoryProductSeeder;
+use Database\Seeders\FlashSaleSeeder;
 
 use Database\Seeders\AttributeProductSeeder;
 use Database\Seeders\ModelHasPermissionSeeder;
@@ -63,6 +64,7 @@ class DatabaseSeeder extends Seeder
             AttributeValueSeeder::class,
             AttributeProductSeeder::class,
             CategoryProductSeeder::class,
+            FlashSaleSeeder::class,
             ProductTagSeeder::class,
             VariationSeeder::class,
             CouponSeeder::class,

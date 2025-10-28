@@ -39,7 +39,9 @@ use Marvel\Http\Controllers\WebHookController;
 use Marvel\Http\Controllers\WishlistController;
 use Marvel\Http\Controllers\WithdrawController;
 use Marvel\Http\Controllers\LanguageController;
-use Marvel\Http\Controllers\StoreNoticeController;
+use Marvel\Http\Controllers\StoreNoticeСоntroller;
+use Marvel\Http\Controllers\FlashSaleController;
+
 
 
 /**
@@ -119,6 +121,8 @@ Route::get('callback/flutterwave', [WebHookController::class, 'callback'])->name
 Route::get('near-by-shop/{lat}/{lng}', [ShopController::class, 'nearByShop']);
 
 Route::get('store-notices', [StoreNoticeController::class, 'index'])->name('store-notices.index');
+
+Route::apiResource('flash-sales', FlashSaleController::class);
 
 Route::apiResource('products', ProductController::class, [
     'only' => ['index', 'show'],
