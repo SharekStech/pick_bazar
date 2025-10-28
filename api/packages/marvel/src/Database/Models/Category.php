@@ -99,4 +99,23 @@ class Category extends Model
     {
         return $this->hasOne('Marvel\Database\Models\Category', 'id', 'parent')->with('parent');
     }
+
+    // Marvel\Database\Models\Category.php
+
+    public function getImageAttribute($value)
+    {
+        if (empty($value)) return null;
+
+        $images = is_array($value) ? $value : json_decode($value, true);
+
+        foreach ($images as &$image) {
+            if (isset($image['original'])) {
+                // এখানে full URL বানাও
+                $image['original'] = url($image['original']);
+            }
+        }
+
+        // যদি single image হয়, array[0] return করতে পারো, নাহলে পুরো array
+        return count($images) === 1 ? $images[0] : $images;
+    }
 }

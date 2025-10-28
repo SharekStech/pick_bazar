@@ -9,8 +9,11 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Marvel\Traits\TranslationTrait;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 class Type extends Model
 {
+    use HasFactory;
 
     use Sluggable;
     use TranslationTrait;

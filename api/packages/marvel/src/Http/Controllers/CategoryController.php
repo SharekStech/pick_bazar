@@ -3,14 +3,15 @@
 
 namespace Marvel\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\File;
 use Marvel\Database\Models\Category;
-use Marvel\Database\Repositories\CategoryRepository;
 use Marvel\Exceptions\MarvelException;
+use Illuminate\Database\Eloquent\Collection;
 use Marvel\Http\Requests\CategoryCreateRequest;
 use Marvel\Http\Requests\CategoryUpdateRequest;
+use Marvel\Database\Repositories\CategoryRepository;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 
@@ -121,6 +122,7 @@ class CategoryController extends CoreController
      */
     public function update(CategoryUpdateRequest $request, $id)
     {
+
         try {
             $request->merge(['id' => $id]);
             return $this->categoryUpdate($request);
@@ -130,11 +132,17 @@ class CategoryController extends CoreController
     }
 
 
+
+
     public function categoryUpdate(CategoryUpdateRequest $request)
     {
-        $category = $this->repository->findOrFail($request->id);
+        $category = $this->repository->find($request->id); // findOrFail নয়
+        if (!$category) {
+            return response()->json(['message' => 'Category not found for id ' . $request->id], 404);
+        }
         return $this->repository->updateCategory($request, $category);
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -142,12 +150,48 @@ class CategoryController extends CoreController
      * @param int $id
      * @return JsonResponse
      */
+    // public function destroy($id)
+    // {
+    //     try {
+    //         $category = $this->repository->findOrFail($id);
+    //         if ($category->image) {
+    //             $this->repository->deleteImage($category->image);
+    //         }
+    //         $category->delete();
+    //         return response()->json(['message' => 'Category deleted successfully.']);
+    //     } catch (MarvelException $e) {
+    //         throw new MarvelException(NOT_FOUND);
+    //     }
+    // }
+
+
+
     public function destroy($id)
     {
         try {
-            return $this->repository->findOrFail($id)->delete();
-        } catch (MarvelException $e) {
-            throw new MarvelException(NOT_FOUND);
+            $category = $this->repository->findOrFail($id);
+
+            // Image delete
+            if (!empty($category->image)) {
+                $images = is_array($category->image) ? $category->image : [$category->image];
+
+                foreach ($images as $image) {
+                    if (isset($image['original'])) {
+                        // database path অনুযায়ী physical path
+                        $imagePath = base_path('api/public' . $image['original']);
+                        if (File::exists($imagePath)) {
+                            File::delete($imagePath);
+                        }
+                    }
+                }
+            }
+
+            // Category delete
+            $category->delete();
+
+            return response()->json(['message' => 'Category deleted successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Category not found.'], 404);
         }
     }
 }

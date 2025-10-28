@@ -10,7 +10,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            ['id' => 1, 'name' => 'Fruits & Vegetables', 'slug' => 'fruits-vegetables', 'language' => 'en','icon' => 'FruitsVegetable', 'image' => json_encode([]), 'details' => null, 'parent' => null, 'type_id' => 1, 'created_at' => '2021-03-08 07:21:31', 'updated_at' => '2021-03-08 07:21:31', 'deleted_at' => null],
+            ['id' => 1, 'name' => 'Medicine', 'slug' => 'medicine', 'language' => 'en','icon' => 'null', 'image' => json_encode([]), 'details' => null, 'parent' => null, 'type_id' => 5, 'created_at' => '2021-03-08 07:21:31', 'updated_at' => '2021-03-08 07:21:31', 'deleted_at' => null],
             ['id' => 2, 'name' => 'Fruits', 'slug' => 'fruits', 'icon' => null, 'language' => 'en','image' => json_encode([]), 'details' => null, 'parent' => 1, 'type_id' => 1, 'created_at' => '2021-03-08 07:22:04', 'updated_at' => '2021-03-08 07:22:04', 'deleted_at' => null],
             ['id' => 3, 'name' => 'Vegetables', 'slug' => 'vegetables', 'language' => 'en','icon' => null, 'image' => '{"id": null, "original": null, "thumbnail": null}', 'details' => null, 'parent' => 1, 'type_id' => 1, 'created_at' => '2021-03-08 07:57:48', 'updated_at' => '2021-03-09 11:51:24', 'deleted_at' => null],
             ['id' => 4, 'name' => 'Meat & Fish', 'slug' => 'meat-fish', 'language' => 'en','icon' => 'MeatFish', 'image' => json_encode([]), 'details' => null, 'parent' => null, 'type_id' => 1, 'created_at' => '2021-03-08 08:54:16', 'updated_at' => '2021-03-08 08:54:16', 'deleted_at' => null],
