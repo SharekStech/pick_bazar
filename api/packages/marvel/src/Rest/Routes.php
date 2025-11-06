@@ -38,8 +38,13 @@ use Marvel\Http\Controllers\UserController;
 use Marvel\Http\Controllers\WebHookController;
 use Marvel\Http\Controllers\WishlistController;
 use Marvel\Http\Controllers\WithdrawController;
+
+use Marvel\Http\Controllers\HospitalController;
+use Marvel\Http\Controllers\DoctorController;
+use Marvel\Http\Controllers\DoctorScheduleController;
+
 use Marvel\Http\Controllers\LanguageController;
-use Marvel\Http\Controllers\StoreNoticeСоntroller;
+use Marvel\Http\Controllers\StoreNoticeController;
 use Marvel\Http\Controllers\FlashSaleController;
 
 
@@ -123,6 +128,13 @@ Route::get('near-by-shop/{lat}/{lng}', [ShopController::class, 'nearByShop']);
 Route::get('store-notices', [StoreNoticeController::class, 'index'])->name('store-notices.index');
 
 Route::apiResource('flash-sales', FlashSaleController::class);
+
+Route::apiResource('hospitals', HospitalController::class);
+
+Route::apiResource('doctors', DoctorController::class);
+Route::apiResource('doctor-schedules', DoctorScheduleController::class);
+
+
 
 Route::apiResource('products', ProductController::class, [
     'only' => ['index', 'show'],
@@ -257,6 +269,8 @@ Route::group(['middleware' => ['can:' . Permission::CUSTOMER, 'auth:sanctum', 'e
     ]);
     Route::post('/set-default-card', [PaymentMethodController::class, 'setDefaultCard']);
     Route::post('/save-payment-method', [PaymentMethodController::class, 'savePaymentMethod']);
+
+
 });
 
 /**

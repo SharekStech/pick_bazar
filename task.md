@@ -1,72 +1,35 @@
-You are a Laravel expert. I have a Laravel project with the following structure:
+1) Doctor Schedules table migration: api\database\migrations\2025_11_03_080249_create_doctor_schedules_table.php
+Fields:
+- id
+- doctor_id (foreign key)
+- hospital_id (foreign key)
+- day_of_week (array of enum: sunday,monday,tuesday,wednesday,thursday,friday,saturday)
+- start_time (time)
+- end_time (time)
+- status (active/inactive)
 
-- Routes file: api\packages\marvel\src\Rest\Routes.php
-- Controllers directory: api\packages\marvel\src\Http\Controllers
-- Migrations directory: api\database\migrations
+Requirements for DoctorSchedule:
+- doctor_id + hospital_id + start_time + end_time should be **unique**
+- A doctor can insert **multiple days** in one schedule
+- **Validation rule**:
+    - Same doctor **cannot have overlapping time on same day in same hospital**
+    - Same doctor **can work in different hospitals at the same time**
+- Schedule CRUD should allow:
+    - Create, update, delete, list
+    - Pagination for listing
+    - JSON response like: ['success'=>true, 'message'=>'...', 'data'=>...]
 
-I want to implement a **Flash Sale system** with a full CRUD API. 
-
-Requirements:
-
-1. Database table: `flash_sales` with fields:
-   - id (primary key, auto-increment)
-   - product_id (integer, foreign key to products table)
-   - discount_percentage (decimal)
-   - start_time (datetime)
-   - end_time (datetime)
-   - status (enum: 'active', 'inactive')
-   - created_at, updated_at (timestamps)
-
-2. API endpoints in `Routes.php`:
-   - GET `/api/flash-sales` → list all flash sales
-   - GET `/api/flash-sales/{id}` → get flash sale by ID
-   - POST `/api/flash-sales` → create new flash sale
-   - PUT `/api/flash-sales/{id}` → update existing flash sale
-   - DELETE `/api/flash-sales/{id}` → delete flash sale
-
-3. Controller: `FlashSaleController.php` in `api\packages\marvel\src\Http\Controllers` with methods:
-   - `index()`
-   - `show($id)`
-   - `store(Request $request)`
-   - `update(Request $request, $id)`
-   - `destroy($id)`
-
-4. Validation rules for create/update:
-   - product_id: required, exists in products table
-   - discount_percentage: required, numeric, 0-100
-   - start_time: required, date, after_or_equal:now
-   - end_time: required, date, after:start_time
-   - status: required, in:active,inactive
-
-5. Responses:
-   - JSON response with `success` or `error` and `data` or `message`.
-
-6. Include database migration file for `flash_sales` table.
-
-Please generate the **full Laravel API CRUD code**, including:
-- Migration
-- Model (FlashSale.php)
-- Controller (FlashSaleController.php)
-- API routes
-- Validation rules
-
-Output the full code in a ready-to-use format.
-now i want flash sell system. now create api full crud for flash sell create contrller 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+2) DoctorScheduleSeeder: api\database\seeders\DoctorScheduleSeeder.php
+- Seed multiple doctors with multiple schedules
+- Each doctor should have schedules in multiple hospitals
+- Make sure **no overlapping times in the same hospital** for the same doctor
+- Use realistic sample data
+3) Generate:
+- Migration (with proper unique constraints)
+- Model (DoctorSchedule) with relationships to Doctor and Hospital
+- Controller with full CRUD, validation rules
+- Routes (apiResource) in api\packages\marvel\src\Rest\Routes.php
+- Seeder with sample schedules
+- Responses in JSON format
+- Validation for overlapping time per hospital per doctor
+- Handle `day_of_week` as array

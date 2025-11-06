@@ -33,6 +33,9 @@ use Database\Seeders\OrderProductSeeder;
 use Database\Seeders\AttributeValueSeeder;
 use Database\Seeders\CategoryProductSeeder;
 use Database\Seeders\FlashSaleSeeder;
+use Database\Seeders\HospitalSeeder;
+use Database\Seeders\DoctorSeeder;
+use Database\Seeders\DoctorScheduleSeeder;
 
 use Database\Seeders\AttributeProductSeeder;
 use Database\Seeders\ModelHasPermissionSeeder;
@@ -65,6 +68,9 @@ class DatabaseSeeder extends Seeder
             AttributeProductSeeder::class,
             CategoryProductSeeder::class,
             FlashSaleSeeder::class,
+            HospitalSeeder::class,
+            DoctorSeeder::class,
+            DoctorScheduleSeeder::class,
             ProductTagSeeder::class,
             VariationSeeder::class,
             CouponSeeder::class,
