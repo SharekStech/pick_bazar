@@ -36,9 +36,9 @@ return new class extends Migration
             $table->double('min_price')->nullable();
             $table->double('max_price')->nullable();
             $table->unsignedBigInteger('shop_id')->nullable();
-$table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
-$table->unsignedBigInteger('manufacturer_id')->nullable();
-$table->foreign('manufacturer_id')->references('id')->on('manufacturers')->onDelete('set null');
+            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->unsignedBigInteger('manufacturer_id')->nullable();
+            $table->foreign('manufacturer_id')->references('id')->on('manufacturers')->onDelete('set null');
             $table->enum(
                 'status',
                 [

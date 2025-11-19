@@ -23,3 +23,4 @@ export { ReviewIcon } from '@/components/icons/sidebar/review';
 export { QuestionIcon } from '@/components/icons/sidebar/question';
 export { ChatIcon } from '@/components/icons/sidebar/chat';
 export { StoreNoticeIcon } from '@/components/icons/sidebar/store-notice';
+export { OfficeIcon } from '@/components/icons/sidebar/office';

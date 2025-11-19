@@ -142,6 +142,11 @@ export const siteSettings = {
         icon: 'ReviewIcon',
       },
       {
+        href: Routes.office.list,
+        label: 'sidebar-nav-item-offices',
+        icon: 'OfficeIcon',
+      },
+      {
         href: Routes.settings,
         label: 'sidebar-nav-item-settings',
         icon: 'SettingsIcon',

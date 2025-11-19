@@ -21,6 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 require base_path('packages/marvel/src/Rest/Routes.php');
 
+use Marvel\Http\Controllers\OfficeController;
+// Route::apiResource('offices', OfficeController::class);
+
 
 Route::get('/debug-test', function() {
     return response()->json([

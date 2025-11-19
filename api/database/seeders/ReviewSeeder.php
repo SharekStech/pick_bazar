@@ -13,7 +13,7 @@ class ReviewSeeder extends Seeder
             [
                 'id' => 1,
                 'user_id' => 2,
-                'shop_id' => 6,
+                'shop_id' => null,
                 'product_id' => 1,
                 'comment' => 'Good and yummy',
                 'rating' => 4,
@@ -24,7 +24,7 @@ class ReviewSeeder extends Seeder
             [
                 'id' => 2,
                 'user_id' => 2,
-                'shop_id' => 6,
+                'shop_id' => null,
                 'product_id' => 2,
                 'comment' => 'It\'s not fully fresh. Was probably a few days old already.',
                 'rating' => 3,
@@ -35,7 +35,7 @@ class ReviewSeeder extends Seeder
             [
                 'id' => 3,
                 'user_id' => 2,
-                'shop_id' => 6,
+                'shop_id' => null,
                 'product_id' => 3,
                 'comment' => 'Blueberries were good but delivery was not on time.',
                 'rating' => 4,
@@ -46,7 +46,7 @@ class ReviewSeeder extends Seeder
             [
                 'id' => 4,
                 'user_id' => 2,
-                'shop_id' => 6,
+                'shop_id' => null,
                 'product_id' => 4,
                 'comment' => 'absolutely best sprouts in town.',
                 'rating' => 5,
@@ -57,7 +57,7 @@ class ReviewSeeder extends Seeder
             [
                 'id' => 5,
                 'user_id' => 2,
-                'shop_id' => 6,
+                'shop_id' => null,
                 'product_id' => 5,
                 'comment' => 'was sliced and fresh but was not cleaned properly.',
                 'rating' => 3,

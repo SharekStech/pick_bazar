@@ -1580,3 +1580,31 @@ export interface OrderStatusPaginator extends PaginatorInfo<OrderStatus> { }
 export interface ConversionPaginator extends PaginatorInfo<Conversations> { }
 
 export interface MessagePaginator extends PaginatorInfo<Message> { }
+
+export interface Office {
+  id: string;
+  name: string;
+  type: 'HEAD' | 'SUB_HEAD';
+  parent_id?: number;
+  address: string;
+  lat?: number;
+  lng?: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface OfficeInput {
+  name: string;
+  type: 'HEAD' | 'SUB_HEAD';
+  parent_id?: number;
+  address: string;
+  lat?: number;
+  lng?: number;
+}
+
+export interface OfficeQueryOptions extends QueryOptions {
+  name?: string;
+  type?: string;
+}
+
+export interface OfficePaginator extends PaginatorInfo<Office> { }

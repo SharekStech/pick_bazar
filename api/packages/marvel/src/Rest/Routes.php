@@ -1,51 +1,53 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use Marvel\Enums\Permission;
-use Marvel\Http\Controllers\AbusiveReportController;
-use Marvel\Http\Controllers\AddressController;
+use Illuminate\Support\Facades\Route;
 use Marvel\Http\Controllers\AiController;
-use Marvel\Http\Controllers\AnalyticsController;
-use Marvel\Http\Controllers\AttachmentController;
-use Marvel\Http\Controllers\AttributeController;
-use Marvel\Http\Controllers\AttributeValueController;
-use Marvel\Http\Controllers\AuthorController;
-use Marvel\Http\Controllers\CategoryController;
-use Marvel\Http\Controllers\CheckoutController;
-use Marvel\Http\Controllers\ConversationController;
-use Marvel\Http\Controllers\CouponController;
-use Marvel\Http\Controllers\DeliveryTimeController;
-use Marvel\Http\Controllers\DownloadController;
-use Marvel\Http\Controllers\FeedbackController;
-use Marvel\Http\Controllers\ManufacturerController;
-use Marvel\Http\Controllers\MessageController;
-use Marvel\Http\Controllers\OrderController;
-use Marvel\Http\Controllers\PaymentIntentController;
-use Marvel\Http\Controllers\PaymentMethodController;
-use Marvel\Http\Controllers\ProductController;
-use Marvel\Http\Controllers\QuestionController;
-use Marvel\Http\Controllers\RefundController;
-use Marvel\Http\Controllers\ResourceController;
-use Marvel\Http\Controllers\ReviewController;
-use Marvel\Http\Controllers\SettingsController;
-use Marvel\Http\Controllers\ShippingController;
-use Marvel\Http\Controllers\ShopController;
 use Marvel\Http\Controllers\TagController;
 use Marvel\Http\Controllers\TaxController;
+use Marvel\Http\Controllers\ShopController;
 use Marvel\Http\Controllers\TypeController;
 use Marvel\Http\Controllers\UserController;
+use Marvel\Http\Controllers\OrderController;
+use Marvel\Http\Controllers\StoreController;
+use Marvel\Http\Controllers\AuthorController;
+use Marvel\Http\Controllers\CouponController;
+use Marvel\Http\Controllers\DoctorController;
+use Marvel\Http\Controllers\OfficeController;
+use Marvel\Http\Controllers\RefundController;
+use Marvel\Http\Controllers\ReviewController;
+use Marvel\Http\Controllers\AddressController;
+use Marvel\Http\Controllers\MessageController;
+use Marvel\Http\Controllers\ProductController;
 use Marvel\Http\Controllers\WebHookController;
+use Marvel\Http\Controllers\CategoryController;
+use Marvel\Http\Controllers\CheckoutController;
+use Marvel\Http\Controllers\DownloadController;
+use Marvel\Http\Controllers\FeedbackController;
+use Marvel\Http\Controllers\HospitalController;
+use Marvel\Http\Controllers\LanguageController;
+use Marvel\Http\Controllers\QuestionController;
+use Marvel\Http\Controllers\ResourceController;
+use Marvel\Http\Controllers\SettingsController;
+use Marvel\Http\Controllers\ShippingController;
 use Marvel\Http\Controllers\WishlistController;
 use Marvel\Http\Controllers\WithdrawController;
-
-use Marvel\Http\Controllers\HospitalController;
-use Marvel\Http\Controllers\DoctorController;
-use Marvel\Http\Controllers\DoctorScheduleController;
-
-use Marvel\Http\Controllers\LanguageController;
-use Marvel\Http\Controllers\StoreNoticeController;
+use Marvel\Http\Controllers\AnalyticsController;
+use Marvel\Http\Controllers\AttributeController;
 use Marvel\Http\Controllers\FlashSaleController;
+use Marvel\Http\Controllers\AttachmentController;
+use Marvel\Http\Controllers\StoreNoticeController;
+
+use Marvel\Http\Controllers\ConversationController;
+use Marvel\Http\Controllers\DeliveryTimeController;
+use Marvel\Http\Controllers\ManufacturerController;
+
+use Marvel\Http\Controllers\AbusiveReportController;
+use Marvel\Http\Controllers\PaymentIntentController;
+use Marvel\Http\Controllers\PaymentMethodController;
+use Marvel\Http\Controllers\AttributeValueController;
+use Marvel\Http\Controllers\DoctorScheduleController;
 
 
 
@@ -133,6 +135,15 @@ Route::apiResource('hospitals', HospitalController::class);
 
 Route::apiResource('doctors', DoctorController::class);
 Route::apiResource('doctor-schedules', DoctorScheduleController::class);
+
+// Office Routes
+Route::apiResource('offices', OfficeController::class);
+
+
+
+// Store Routes
+Route::apiResource('stores', StoreController::class);
+
 
 
 

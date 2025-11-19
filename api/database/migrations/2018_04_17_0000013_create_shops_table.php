@@ -23,6 +23,9 @@ return new class extends Migration
             $table->json('address')->nullable();
             $table->json('settings')->nullable();
             $table->timestamps();
+
+
+          
         });
     }
 

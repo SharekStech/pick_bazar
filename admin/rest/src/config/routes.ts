@@ -98,6 +98,9 @@ export const Routes = {
   storeNoticeRead: {
     ...routesFactory('/store-notices/read'),
   },
+  office: {
+    ...routesFactory('/offices'),
+  },
 };
 
 function routesFactory(endpoint: string) {
